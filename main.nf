@@ -47,6 +47,8 @@ Channel
 
 
 process index {
+    pod = [runAsUser: 0]
+
     tag "$transcriptome.simpleName"
 
     input:
@@ -63,6 +65,7 @@ process index {
 
 
 process quant {
+    pod = [runAsUser: 0]
     tag "$pair_id"
 
     input:
@@ -79,6 +82,7 @@ process quant {
 }
 
 process fastqc {
+    pod = [runAsUser: 0]
     tag "FASTQC on $sample_id"
     publishDir params.outdir
 
@@ -97,6 +101,7 @@ process fastqc {
 
 
 process multiqc {
+    pod = [runAsUser: 0]
     publishDir params.outdir, mode:'copy'
     
     input:
